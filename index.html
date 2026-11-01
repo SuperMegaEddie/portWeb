@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SuperMegaEddie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+    }
+    .orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .neon-card {
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+    .neon-glow {
+      text-shadow: 0 0 25px rgba(6, 182, 212, 0.6);
+    }
+
+    #float-container {
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
+    }
+
+    .float-word {
+      transform-style: preserve-3d;
+      will-change: transform, opacity, color;
+    }
+
+    .custom-scroll {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(3, 7, 18, 0.9);
+      border-radius: 9999px;
+      border: 1px solid rgba(6, 182, 212, 0.15);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #0891b2, #06b6d4);
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #22d3ee;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black overflow-x-hidden">
+
+  <!-- Background Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="relative z-20 border-b border-cyan-900/60 bg-gray-950/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+      <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-red-500 flex items-center justify-center font-black text-black text-sm sm:text-base orbitron shadow-lg shadow-cyan-500/20">
+        SME
+      </div>
+      <div>
+        <span class="orbitron text-xl font-bold tracking-wider text-white">SUPERMEGA<span class="text-cyan-400">EDDIE</span></span>
+        <span class="block text-[10px] uppercase tracking-widest text-gray-400">Official Portal</span>
+      </div>
+    </div>
+
+    <nav class="flex items-center gap-3">
+      <button onclick="showPage('home')" id="nav-home" class="px-4 py-2 rounded-lg text-sm font-semibold transition border border-cyan-500 bg-cyan-500/20 text-cyan-300">
+        Home
+      </button>
+      <button onclick="showPage('games')" id="nav-games" class="px-4 py-2 rounded-lg text-sm font-semibold transition border border-transparent text-gray-300 hover:text-white hover:bg-gray-800">
+        Games
+      </button>
+      <button onclick="showPage('playing-games')" id="nav-playing" class="px-4 py-2 rounded-lg text-sm font-semibold transition border border-transparent text-gray-300 hover:text-white hover:bg-gray-800">
+        Playing Games
+      </button>
+    </nav>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- PAGE 1: HOME PAGE -->
+  <!-- ======================================================== -->
+  <main id="page-home" class="relative z-10 flex-1 flex flex-col justify-between overflow-hidden min-h-[calc(100vh-140px)] select-none">
+    <div id="float-container" class="relative flex-1 w-full h-full pointer-events-none">
+      <div id="word-super" class="float-word absolute font-black orbitron text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider text-cyan-400 neon-glow opacity-90 transition-colors duration-700 whitespace-nowrap">
+        Super
+      </div>
+      <div id="word-mega" class="float-word absolute font-black orbitron text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider text-red-500 neon-glow opacity-90 transition-colors duration-700 whitespace-nowrap">
+        Mega
+      </div>
+      <div id="word-eddie" class="float-word absolute font-black orbitron text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider text-blue-400 neon-glow opacity-90 transition-colors duration-700 whitespace-nowrap">
+        Eddie
+      </div>
+    </div>
+
+    <div class="relative z-20 pb-16 pt-6 px-4 flex flex-col items-center justify-center text-center">
+      <p class="text-sm sm:text-base text-gray-400 max-w-md mx-auto mb-6 tracking-wide">
+        Explore game projects, walkthroughs, and custom series.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full max-w-md">
+        <button onclick="showPage('games')" class="w-full sm:w-auto px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-black font-bold orbitron text-base rounded-xl transition duration-200 shadow-lg shadow-cyan-500/30 hover:scale-105 active:scale-95">
+          Games
+        </button>
+
+        <button onclick="showPage('playing-games')" class="w-full sm:w-auto px-8 py-4 bg-gray-900/90 backdrop-blur-sm hover:bg-gray-800 text-cyan-400 border border-cyan-500/40 font-bold orbitron text-base rounded-xl transition duration-200 hover:border-cyan-400 hover:scale-105 active:scale-95">
+          Playing Games
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- PAGE 2: GAMES -->
+  <!-- ======================================================== -->
+  <main id="page-games" class="relative z-10 flex-1 px-4 sm:px-8 py-12 max-w-7xl mx-auto w-full hidden">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-cyan-900/40">
+      <div>
+        <div class="text-cyan-400 text-xs uppercase tracking-widest font-semibold mb-1">Studio Projects</div>
+        <h2 class="orbitron text-4xl font-black text-white">GAMES ARCHIVE</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="openNewProjectModal()" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-bold orbitron text-xs rounded-lg transition shadow-md shadow-cyan-500/20">
+          + New Project Tab
+        </button>
+        <button onclick="showPage('home')" class="px-4 py-2 rounded-lg bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white border border-gray-700 text-xs font-semibold transition">
+          ← Back to Home
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Tabs Navigation -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 custom-scroll" id="project-tabs-bar"></div>
+
+    <!-- Active Project Details Card -->
+    <section class="rounded-2xl border border-cyan-500/30 bg-gray-950/60 p-6 sm:p-8 backdrop-blur-md neon-card mb-10" id="project-header-box"></section>
+
+    <!-- Specific Interactive Panel (Toy Box or Onslaught) -->
+    <div id="project-spec-panel" class="mb-10 hidden"></div>
+
+    <!-- Project Media Sections -->
+    <div class="space-y-12">
+      <!-- Images Section -->
+      <section>
+        <div class="flex items-center justify-between pb-3 mb-6 border-b border-gray-800">
+          <div class="flex items-center gap-2">
+            <h3 class="orbitron text-xl font-bold text-white">Screenshots &amp; Artwork</h3>
+            <span id="proj-img-count" class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 font-mono">0</span>
+          </div>
+          <button onclick="openAddMediaModal('image')" class="px-3 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition">
+            + Add Image
+          </button>
+        </div>
+        <div id="project-images-grid" class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"></div>
+      </section>
+
+      <!-- Videos Section -->
+      <section>
+        <div class="flex items-center justify-between pb-3 mb-6 border-b border-gray-800">
+          <div class="flex items-center gap-2">
+            <h3 class="orbitron text-xl font-bold text-white">Trailers &amp; Gameplay Clips</h3>
+            <span id="proj-video-count" class="text-xs px-2 py-0.5 rounded bg-red-950 text-red-400 font-mono">0</span>
+          </div>
+          <button onclick="openAddMediaModal('video')" class="px-3 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-red-500/40 text-red-300 text-xs font-semibold transition">
+            + Add Video
+          </button>
+        </div>
+        <div id="project-videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+      <!-- Audio Section -->
+      <section>
+        <div class="flex items-center justify-between pb-3 mb-6 border-b border-gray-800">
+          <div class="flex items-center gap-2">
+            <h3 class="orbitron text-xl font-bold text-white">Soundtracks &amp; Audio</h3>
+            <span id="proj-audio-count" class="text-xs px-2 py-0.5 rounded bg-purple-950 text-purple-400 font-mono">0</span>
+          </div>
+          <button onclick="openAddMediaModal('audio')" class="px-3 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-purple-500/40 text-purple-300 text-xs font-semibold transition">
+            + Add Audio
+          </button>
+        </div>
+        <div id="project-audio-list" class="space-y-4"></div>
+      </section>
+    </div>
+
+    <div class="min-h-[100px]"></div>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- PAGE 3: PLAYING GAMES -->
+  <!-- ======================================================== -->
+  <main id="page-playing-games" class="relative z-10 flex-1 px-4 sm:px-8 py-12 max-w-7xl mx-auto w-full hidden">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-cyan-900/40">
+      <div>
+        <div class="text-cyan-400 text-xs uppercase tracking-widest font-semibold mb-2">Video Library</div>
+        <h2 class="orbitron text-4xl font-black text-white">PLAYING GAMES</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <button onclick="openPlaylistModal()" class="px-4 py-2.5 bg-gray-900 hover:bg-gray-800 border border-cyan-500/40 text-cyan-300 font-bold orbitron text-sm rounded-lg transition hover:border-cyan-400 flex items-center gap-2">
+          <span>📁</span> + New Playlist Header
+        </button>
+
+        <button onclick="openVideoModal()" class="px-4 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold orbitron text-sm rounded-lg transition shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+          <span>+</span> Add Video
+        </button>
+
+        <a href="https://youtube.com/@supermegaeddie" target="_blank" rel="noopener" class="px-4 py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold orbitron text-sm rounded-lg transition">
+          YouTube Channel
+        </a>
+      </div>
+    </div>
+
+    <!-- RANDOM FEATURED VIDEO SPOTLIGHT -->
+    <section class="mb-14 rounded-2xl bg-gray-950/70 border border-cyan-500/30 overflow-hidden neon-card">
+      <div class="p-6 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-cyan-900/30">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="featured-badge" class="px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-500/50 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+              Featured Video
+            </span>
+            <span id="featured-series-badge" class="text-xs text-gray-400">Dispatch</span>
+          </div>
+          <h3 id="featured-title" class="orbitron text-2xl font-bold text-white mt-2">I Just Wanna Dispatch!</h3>
+          <p id="featured-desc" class="text-sm text-gray-400">Hit the Random button to pick a surprise video from your collection.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="playRandomVideo()" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-extrabold orbitron text-sm rounded-lg transition shadow-lg shadow-cyan-500/25 flex items-center gap-2 active:scale-95">
+            <span>🎲</span> Random Video
+          </button>
+          <a id="featured-yt-link" href="https://www.youtube.com/playlist?list=PLY5FOCn--J_ucQmfDEHDjvSHMdrQq7gJm" target="_blank" rel="noopener" class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-cyan-400 border border-cyan-500/40 rounded-lg text-sm font-semibold transition">
+            Watch on YouTube ↗
+          </a>
+        </div>
+      </div>
+      <div class="aspect-video w-full bg-black">
+        <iframe 
+          id="featured-iframe"
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/videoseries?list=PLY5FOCn--J_ucQmfDEHDjvSHMdrQq7gJm" 
+          title="Featured Video Player" 
+          frameborder="0" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- HORIZONTAL SCROLL PLAYLIST SECTIONS -->
+    <section id="playlists-container" class="space-y-12"></section>
+
+    <div id="overall-empty" class="text-center py-16 px-4 rounded-xl border border-dashed border-gray-800 bg-gray-950/30 hidden">
+      <p class="text-gray-400 text-base mb-4">No custom playlist headers or videos created yet.</p>
+      <div class="flex justify-center gap-4">
+        <button onclick="openPlaylistModal()" class="px-5 py-2.5 rounded-lg bg-gray-900 border border-cyan-500/40 text-cyan-300 hover:bg-gray-800 text-sm font-semibold transition">
+          + Create First Playlist Header
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="relative z-10 border-t border-cyan-950/40 bg-gray-950/60 py-6 text-center text-xs text-gray-500">
+    SuperMegaEddie &copy; 2026. All rights reserved.
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: LIGHTBOX WITH EDITABLE DESCRIPTION -->
+  <!-- ======================================================== -->
+  <div id="art-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 cursor-pointer" onclick="closeArtModal()">
+    <button onclick="closeArtModal()" class="absolute top-4 right-6 text-gray-400 hover:text-white text-3xl font-bold z-10">&times;</button>
+    <div class="max-w-4xl w-full max-h-[92vh] bg-gray-950 border border-cyan-500/40 rounded-2xl overflow-hidden flex flex-col shadow-2xl cursor-default" onclick="event.stopPropagation()">
+      <div class="flex-1 p-2 overflow-auto flex items-center justify-center bg-black/80 max-h-[65vh]">
+        <img id="art-modal-img" src="" alt="Enlarged Artwork" class="max-h-[62vh] max-w-full w-auto h-auto object-contain rounded-lg">
+      </div>
+      <div class="p-5 border-t border-cyan-950/80 bg-gray-950 flex flex-col gap-3">
+        <div id="art-desc-view" class="flex items-start justify-between gap-4">
+          <p id="art-modal-text" class="text-sm text-gray-300 leading-relaxed italic whitespace-pre-wrap flex-1">
+            No description added yet.
+          </p>
+          <button onclick="enableArtDescEdit()" class="px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-cyan-500/40 text-cyan-400 text-xs font-semibold shrink-0 transition">
+            Edit Description ✎
+          </button>
+        </div>
+        <div id="art-desc-edit" class="hidden flex flex-col gap-3">
+          <textarea id="art-desc-input" rows="3" class="w-full bg-gray-900 border border-cyan-500/50 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-cyan-400" placeholder="Type a description for this artwork..."></textarea>
+          <div class="flex justify-end gap-2">
+            <button onclick="cancelArtDescEdit()" class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white text-xs font-semibold transition">
+              Cancel
+            </button>
+            <button onclick="saveArtDesc()" class="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-bold orbitron transition">
+              Save Description
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ADD / EDIT PROJECT CATEGORY TAB (GAMES) -->
+  <!-- ======================================================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-gray-900 border border-cyan-500/50 rounded-2xl max-w-lg w-full p-6 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+        <h3 id="proj-modal-title" class="orbitron text-xl font-bold text-white">Create Project Tab</h3>
+        <button onclick="toggleModal('project-modal', false)" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="project-form" onsubmit="handleProjectSubmit(event)" class="space-y-4">
+        <input type="hidden" id="edit-proj-id" value="">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Project Name *</label>
+          <input type="text" id="proj-name-input" required placeholder="e.g. Toy Box, Onslaught, Monster Slayer" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Subtitle / Tagline</label>
+          <input type="text" id="proj-tagline-input" placeholder="e.g. 3D Collectathon Platformer" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Overview Description</label>
+          <textarea id="proj-desc-input" rows="3" placeholder="Game genre, combat systems, concept synopsis..." class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-gray-800">
+          <button type="button" onclick="toggleModal('project-modal', false)" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 text-sm font-semibold">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-sm font-bold orbitron">
+            Save Project Tab
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ADD MEDIA TO PROJECT -->
+  <!-- ======================================================== -->
+  <div id="media-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-gray-900 border border-cyan-500/50 rounded-2xl max-w-lg w-full p-6 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+        <h3 id="media-modal-title" class="orbitron text-xl font-bold text-white">Add Media</h3>
+        <button onclick="toggleModal('media-modal', false)" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="media-form" onsubmit="handleMediaSubmit(event)" class="space-y-4">
+        <input type="hidden" id="media-type" value="image">
+        <div>
+          <label id="media-url-label" class="block text-xs uppercase tracking-wider text-gray-400 mb-1">File Path or Link *</label>
+          <input type="text" id="media-url" required placeholder="Image link or local filename" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Title / Caption *</label>
+          <input type="text" id="media-title" required placeholder="Display title" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Notes / Description (Optional)</label>
+          <textarea id="media-desc" rows="2" placeholder="Notes..." class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-gray-800">
+          <button type="button" onclick="toggleModal('media-modal', false)" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 text-sm font-semibold">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-sm font-bold orbitron">
+            Add to Project
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: CREATE / EDIT PLAYLIST HEADER (PLAYING GAMES) -->
+  <!-- ======================================================== -->
+  <div id="playlist-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-gray-900 border border-cyan-500/50 rounded-2xl max-w-lg w-full p-6 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+        <div>
+          <h3 id="pl-modal-title" class="orbitron text-xl font-bold text-white">Create Playlist Header</h3>
+          <p class="text-xs text-gray-400">Configure this playlist header to group your videos horizontally.</p>
+        </div>
+        <button onclick="toggleModal('playlist-modal', false)" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="playlist-form" onsubmit="handlePlaylistSubmit(event)" class="space-y-4">
+        <input type="hidden" id="edit-pl-id" value="">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Playlist Name *</label>
+          <input type="text" id="pl-name" required placeholder="e.g. Super Mario Odyssey" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Subtitle / Description (Optional)</label>
+          <input type="text" id="pl-desc" placeholder="e.g. Full playthrough from start to finish" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">YouTube Playlist Link (Optional)</label>
+          <input type="url" id="pl-url" placeholder="https://www.youtube.com/playlist?list=..." class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-gray-800">
+          <button type="button" onclick="toggleModal('playlist-modal', false)" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 text-sm font-semibold">
+            Cancel
+          </button>
+          <button type="submit" id="pl-submit-btn" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-sm font-bold orbitron">
+            Save Playlist Header
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ADD OR EDIT VIDEO (PLAYING GAMES) -->
+  <!-- ======================================================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-gray-900 border border-cyan-500/50 rounded-2xl max-w-lg w-full p-6 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+        <h3 id="video-modal-title" class="orbitron text-xl font-bold text-white">Add Video</h3>
+        <button onclick="toggleModal('video-modal', false)" class="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="video-form" onsubmit="handleVideoSubmit(event)" class="space-y-4">
+        <input type="hidden" id="edit-video-id" value="">
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="block text-xs uppercase tracking-wider text-gray-400">Select Playlist / Header *</label>
+            <button type="button" onclick="openPlaylistModal(); toggleModal('video-modal', false);" class="text-xs text-cyan-400 hover:underline">+ New Header</button>
+          </div>
+          <select id="video-playlist-select" required class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">YouTube Link or Video ID *</label>
+          <input type="text" id="video-url" required placeholder="https://www.youtube.com/watch?v=... or 11-char ID" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Video Title *</label>
+          <input type="text" id="video-title" required placeholder="Episode or Highlight title" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Episode / Part Label (Optional)</label>
+          <input type="text" id="video-part" placeholder="e.g. Episode 1, Highlight, Finale" class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Description (Optional)</label>
+          <textarea id="video-desc" rows="2" placeholder="Brief gameplay note..." class="w-full bg-gray-950 border border-cyan-500/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-400"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-gray-800">
+          <button type="button" onclick="toggleModal('video-modal', false)" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 text-sm font-semibold">
+            Cancel
+          </button>
+          <button type="submit" id="video-submit-btn" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-sm font-bold orbitron">
+            Save Video
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: VIDEO THEATER PLAYER -->
+  <!-- ======================================================== -->
+  <div id="player-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl bg-gray-950 rounded-2xl overflow-hidden border border-cyan-500/40">
+      <div class="p-3 bg-gray-900 flex justify-between items-center border-b border-gray-800">
+        <span id="player-title" class="orbitron text-sm font-bold text-white truncate max-w-md"></span>
+        <button onclick="closeVideoPlayer()" class="text-gray-400 hover:text-white text-xl font-bold px-3 py-1">&times;</button>
+      </div>
+      <div class="aspect-video w-full bg-black">
+        <iframe id="player-iframe" class="w-full h-full" src="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <!-- ======================================================== -->
+  <script>
+    function showPage(pageId) {
+      document.getElementById('page-home').classList.add('hidden');
+      document.getElementById('page-games').classList.add('hidden');
+      document.getElementById('page-playing-games').classList.add('hidden');
+
+      const target = document.getElementById('page-' + pageId);
+      if (target) target.classList.remove('hidden');
+
+      ['home', 'games', 'playing'].forEach(id => {
+        const btn = document.getElementById('nav-' + id);
+        if (id === (pageId === 'playing-games' ? 'playing' : pageId)) {
+          btn.className = "px-4 py-2 rounded-lg text-sm font-semibold transition border border-cyan-500 bg-cyan-500/20 text-cyan-300";
+        } else {
+          btn.className = "px-4 py-2 rounded-lg text-sm font-semibold transition border border-transparent text-gray-300 hover:text-white hover:bg-gray-800";
+        }
+      });
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('click', function(e) {
+      if (!e.target.closest('.header-menu-container')) {
+        document.querySelectorAll('.header-dropdown-menu').forEach(el => el.classList.add('hidden'));
+      }
+    });
+
+    function toggleHeaderMenu(plId, e) {
+      e.stopPropagation();
+      const menu = document.getElementById(`menu_${plId}`);
+      const isHidden = menu.classList.contains('hidden');
+      document.querySelectorAll('.header-dropdown-menu').forEach(el => el.classList.add('hidden'));
+      if (isHidden) {
+        menu.classList.remove('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------
+    // GAMES ARCHIVE & CUSTOMIZABLE CATEGORY TABS
+    // -------------------------------------------------------------
+    const INITIAL_PROJECTS = [
+      {
+        id: 'toy_box',
+        name: 'Toy Box',
+        tagline: '3D Collectathon Platformer • First Solo Game Project',
+        desc: 'A playful, cramped vertical toy box overrun by bugs who kidnapped the Army General and scattered Tee Teddy\'s stuffing across the floor. Play as TopSpinner, an animated toy waking to life at the bottom of the box who must spin-jump, climb stacked toys, collect coins, and defeat Battle Bugg at the top to escape.',
+        designer: 'Eddie Cramer (Solo Designer)',
+        engine: 'Unreal Engine',
+        genre: '3D Platformer / Collectathon',
+        status: 'Solo Project Archive',
+        paths: [
+          'Path 1: Standard vertical climb over stacked blocks, Lincoln Logs, and toy boxes.',
+          'Path 2: Dodge past the dart blaster while timing jumps and gathering coins.',
+          'Path 3: High-risk parkour route with shortcuts, ball pits, and skilled jumps.'
+        ],
+        mechanics: [
+          'Left Click Spin Jump: Gain vertical height to clear large gaps and damage bugs in radius.',
+          'Coin Counter: Collect coins across routes to unlock the door to Battle Bugg\'s Castle.',
+          'Objectives: Defeat Battle Bugg, rescue Tee\'s stuffing (6 parts), and find the Golden Army Men.'
+        ],
+        images: [
+          'EdwardCramer_Diagram.jpg',
+          'EdwardCramer_map.jpg'
+        ],
+        videos: [
+          {
+            url: 'Finallevel.mp4',
+            title: 'Toy Box - Final Level Full Walkthrough',
+            desc: 'Complete gameplay walkthrough showing the 3 distinct paths, spin jump mechanics, Tee Teddy stuffing collection, and the final Battle Bugg encounter.'
+          },
+          {
+            url: 'https://youtube.com/clip/UgkxG4t8eLC4szj1cffopj9sth9AE9rXadCB',
+            title: 'Spin Jump Mechanic Inspiration',
+            desc: 'Super Mario Galaxy 2 spin attack research referenced during the mechanic prototype phase.'
+          }
+        ],
+        audios: []
+      },
+      {
+        id: 'onslaught',
+        name: 'Onslaught',
+        tagline: 'High-intensity Unreal Engine 5 FPS Survival',
+        desc: 'Onslaught drops you into a sprawling industrial complex overrun by adaptive robots. They learn. They push back. And they don\'t stop coming. You are the last line of defense—fight through tight corridors and open factory floors, manage resources, and survive wave after relentless wave of mechanical enemies.',
+        itchUrl: 'https://cmong.itch.io/onslaught',
+        downloadUrl: 'https://cmong.itch.io/onslaught',
+        platforms: 'Windows / Linux (686 MB)',
+        engine: 'Unreal Engine 5',
+        status: 'Prototype',
+        images: [
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI0Mi5wbmc=/original/Nug%2B44.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI0My5wbmc=/original/yz8xJZ.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI0NC5wbmc=/original/j7nHhy.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI0OS5wbmc=/original/wIwa7E.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI1NS5wbmc=/original/ZTPxzF.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI1NC5wbmc=/original/CnRpjd.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI1My5wbmc=/original/vtMJIP.png',
+          'https://img.itch.zone/aW1hZ2UvNDYxOTE5Ny8yNzU2NTI1Mi5wbmc=/original/VQhJus.png'
+        ],
+        videos: [],
+        audios: []
+      },
+      {
+        id: 'monster_slayer',
+        name: 'Monster Slayer',
+        tagline: '*working Title* Build Your Ultimate fighting Team',
+        desc: 'Original real-time combat action adventure. Collect monster companions, form battle squads, and face tactical bosses across hand-crafted stages.',
+        images: [
+          'IMG_4990.HEIC.jpg',
+          'IMG_4989.HEIC.jpg',
+          'IMG_4988.HEIC.jpg',
+          'IMG_4987.HEIC.jpg',
+          'IMG_4986.HEIC.jpg',
+          'IMG_4985.HEIC.jpg',
+          'IMG_4984.HEIC.jpg',
+          'IMG_4983.HEIC.jpg',
+          'IMG_4982.HEIC.jpg',
+          'IMG_4981.HEIC.jpg'
+        ],
+        videos: [],
+        audios: []
+      }
+    ];
+
+    let projects = JSON.parse(localStorage.getItem('sme_projects')) || INITIAL_PROJECTS;
+
+    // Synchronize Toy Box entry to have Finallevel.mp4 in videos and screenshot
+    const toyBoxProj = projects.find(p => p.id === 'toy_box');
+    if (toyBoxProj) {
+      if (!toyBoxProj.videos) toyBoxProj.videos = [];
+      if (!toyBoxProj.videos.some(v => v.url === 'Finallevel.mp4')) {
+        toyBoxProj.videos.unshift({
+          url: 'Finallevel.mp4',
+          title: 'Toy Box - Final Level Full Walkthrough',
+          desc: 'Complete gameplay walkthrough showing the 3 distinct paths, spin jump mechanics, Tee Teddy stuffing collection, and the final Battle Bugg encounter.'
+        });
+      }
+    } else {
+      projects.unshift(INITIAL_PROJECTS[0]);
+    }
+
+    let currentProjectId = localStorage.getItem('sme_active_project_id') || 'toy_box';
+    let artDescriptions = JSON.parse(localStorage.getItem('sme_art_descriptions')) || {
+      'EdwardCramer_Diagram.jpg': 'IAT4 Level Pacing Flowchart: Detailed path structure, pacing timeline, and IPM mechanics chart for Toy Box.',
+      'EdwardCramer_map.jpg': 'Level Layout Map: Top-down floorplan including Lincoln Logs, Tee Teddy\'s Demise, Card Stacks, and Castle De bugs.'
+    };
+    let activeArtSrc = null;
+
+    function saveProjects() {
+      localStorage.setItem('sme_projects', JSON.stringify(projects));
+      localStorage.setItem('sme_active_project_id', currentProjectId);
+      renderProjectPage();
+    }
+
+    function selectProject(projId) {
+      currentProjectId = projId;
+      localStorage.setItem('sme_active_project_id', currentProjectId);
+      renderProjectPage();
+    }
+
+    function renderProjectPage() {
+      if (!projects.some(p => p.id === currentProjectId)) {
+        currentProjectId = projects[0]?.id || '';
+      }
+      const activeProj = projects.find(p => p.id === currentProjectId);
+
+      // 1. Render Tabs Bar
+      const tabsBar = document.getElementById('project-tabs-bar');
+      tabsBar.innerHTML = '';
+      projects.forEach(p => {
+        const btn = document.createElement('button');
+        const isActive = p.id === currentProjectId;
+        btn.onclick = () => selectProject(p.id);
+        btn.className = isActive
+          ? "px-5 py-2.5 rounded-xl text-sm font-bold orbitron border border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-md shadow-cyan-500/20 whitespace-nowrap transition"
+          : "px-5 py-2.5 rounded-xl text-sm font-bold orbitron border border-gray-800 bg-gray-950/80 text-gray-400 hover:text-white hover:border-gray-700 whitespace-nowrap transition";
+        btn.innerText = p.name;
+        tabsBar.appendChild(btn);
+      });
+
+      if (!activeProj) return;
+
+      // 2. Render Header Box
+      document.getElementById('project-header-box').innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-cyan-950/80 pb-6 mb-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-cyan-950 border border-cyan-500/40 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-3">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> ${activeProj.status || 'Project Category'}
+            </div>
+            <h2 class="orbitron text-3xl sm:text-5xl font-black text-white tracking-wide">${escapeHtml(activeProj.name)}</h2>
+            ${activeProj.tagline ? `<p class="text-cyan-300 font-semibold text-sm sm:text-base mt-2 tracking-wide">${escapeHtml(activeProj.tagline)}</p>` : ''}
+            ${activeProj.desc ? `<p class="text-gray-300 text-xs sm:text-sm mt-3 max-w-3xl leading-relaxed">${escapeHtml(activeProj.desc)}</p>` : ''}
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            ${activeProj.itchUrl ? `
+              <a href="${escapeHtml(activeProj.itchUrl)}" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold orbitron text-xs transition shadow-lg shadow-red-600/30 flex items-center gap-1.5">
+                <span>itch.io Page</span> ↗
+              </a>
+            ` : ''}
+            <button onclick="openEditProjectModal('${activeProj.id}')" class="px-3.5 py-2 rounded-lg bg-gray-900 hover:bg-gray-800 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition">
+              Edit Project ✎
+            </button>
+            ${projects.length > 1 ? `
+              <button onclick="deleteProject('${activeProj.id}')" class="px-3 py-2 rounded-lg bg-gray-900 hover:bg-red-950/60 border border-gray-800 hover:border-red-500/50 text-gray-400 hover:text-red-400 text-xs font-semibold transition" title="Delete this project tab">
+                Delete 🗑
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-400">
+          ${activeProj.platforms ? `<span class="px-2.5 py-1 rounded bg-gray-900 border border-gray-800 text-cyan-300">${escapeHtml(activeProj.platforms)}</span>` : ''}
+          ${activeProj.engine ? `<span class="px-2.5 py-1 rounded bg-gray-900 border border-gray-800">${escapeHtml(activeProj.engine)}</span>` : ''}
+          <span>${activeProj.images?.length || 0} Images</span>
+          <span>•</span>
+          <span>${activeProj.videos?.length || 0} Videos</span>
+          <span>•</span>
+          <span>${activeProj.audios?.length || 0} Audio Tracks</span>
+        </div>
+      `;
+
+      // 3. Render Custom Panels (Toy Box or Onslaught)
+      const specPanel = document.getElementById('project-spec-panel');
+      if (activeProj.id === 'toy_box') {
+        specPanel.classList.remove('hidden');
+        specPanel.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Story & Objective -->
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5">
+              <h4 class="orbitron text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
+                <span>📦</span> Story &amp; Objective
+              </h4>
+              <p class="text-xs text-gray-300 leading-relaxed mb-3">
+                Waking up as <strong>TopSpinner</strong> in a bottom corner beneath forgotten toys, you learn bugs have invaded, ransacked Tee Teddy, and kidnapped the Army General.
+              </p>
+              <ul class="text-xs text-gray-300 space-y-1.5 font-mono">
+                <li>• <strong>Main Goal:</strong> Reach the top and defeat Battle Bugg.</li>
+                <li>• <strong>Tee's Stuffing:</strong> 6 pieces hidden across the box.</li>
+                <li>• <strong>Coins:</strong> 15 coins scattered to unlock the boss castle gate.</li>
+                <li>• <strong>Secret:</strong> Free the Golden Army Men.</li>
+              </ul>
+            </div>
+
+            <!-- Mechanics & IPM -->
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5">
+              <h4 class="orbitron text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
+                <span>🔄</span> Mechanics &amp; Controls
+              </h4>
+              <div class="text-xs text-gray-300 space-y-2 leading-relaxed">
+                <p>• <strong>Left-Click Spin Jump:</strong> Core move inspired by Mario Galaxy's spin; grants an extra vertical boost to reach higher shelves and sweeps away bugs.</p>
+                <p>• <strong>Coin Gate Logic:</strong> Doors remain locked until you prove mastery by collecting coins across paths.</p>
+                <p>• <strong>Platform Stacks:</strong> Mega Bloks, Lincoln Logs, soccer balls, and cards acting as vertical staircases.</p>
+              </div>
+            </div>
+
+            <!-- Path Breakdown -->
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5">
+              <h4 class="orbitron text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
+                <span>🗺️</span> 3 Branching Routes
+              </h4>
+              <ul class="text-xs text-gray-300 space-y-2 leading-relaxed">
+                <li>• <strong>Path 1:</strong> Ascend stacked toy blocks and Lincoln Log ramps towards the castle gate.</li>
+                <li>• <strong>Path 2:</strong> Avoid active blaster shots while gathering coins and side collectibles.</li>
+                <li>• <strong>Path 3:</strong> High-risk parkour route across suspended balls and tricky shortcuts.</li>
+              </ul>
+            </div>
+          </div>
+        `;
+      } else if (activeProj.id === 'onslaught') {
+        specPanel.classList.remove('hidden');
+        specPanel.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5">
+              <h4 class="orbitron text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
+                <span>⚡</span> Core Features
+              </h4>
+              <ul class="text-xs text-gray-300 space-y-2 leading-relaxed">
+                <li>• <strong>Fast-Paced Combat:</strong> High-intensity wave survival inside an industrial facility.</li>
+                <li>• <strong>Adaptive Robot AI:</strong> Enemies learn and dynamically counter your tactics.</li>
+                <li>• <strong>Relentless Escalation:</strong> Waves scale in difficulty to test skill &amp; ammo efficiency.</li>
+                <li>• <strong>Modular Level Layouts:</strong> Tight corridors, open factory floors, and catwalks.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5">
+              <h4 class="orbitron text-sm font-bold text-cyan-400 mb-3 flex items-center gap-2">
+                <span>🎮</span> Controls
+              </h4>
+              <div class="text-xs text-gray-300 space-y-1.5 font-mono">
+                <div class="flex justify-between"><span class="text-gray-400">Movement / Look:</span><span>WASD / Mouse</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Fire Weapon:</span><span class="text-cyan-300">Left Click (RT)</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Grapple Hook:</span><span class="text-cyan-300">Right Click / F (LT)</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Dash / Jump:</span><span>L-Shift / Space (RB / A)</span></div>
+                <div class="flex justify-between"><span class="text-gray-400">Nightvision:</span><span class="text-emerald-400">N (D-Pad Down)</span></div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-cyan-900/40 bg-gray-950/60 p-5 flex flex-col justify-between">
+              <div>
+                <h4 class="orbitron text-sm font-bold text-cyan-400 mb-2 flex items-center gap-2">
+                  <span>🛠</span> Team Credits
+                </h4>
+                <div class="text-xs text-gray-400 leading-relaxed mb-4">
+                  <p><strong class="text-gray-200">Design:</strong> Chayce Mong, Tony Grollmes, Mark Auayan, Trent Dubberke, Eddie Cramer</p>
+                  <p><strong class="text-gray-200">Art:</strong> Franklin MacKay, Ben Dillenbeck, Travis Sexton, Nazseem Smith, Orlando Ojeda, Chloe Maurer, Oliver Herrera</p>
+                  <p><strong class="text-gray-200">Audio:</strong> Jaden Richardson</p>
+                </div>
+              </div>
+              <a href="https://cmong.itch.io/onslaught" target="_blank" rel="noopener" class="w-full py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold orbitron text-center text-xs tracking-wider transition shadow-lg shadow-red-600/20">
+                Download on itch.io (686 MB) ↗
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        specPanel.classList.add('hidden');
+        specPanel.innerHTML = '';
+      }
+
+      // 4. Render Images
+      const imgGrid = document.getElementById('project-images-grid');
+      imgGrid.innerHTML = '';
+      const imgs = activeProj.images || [];
+      document.getElementById('proj-img-count').innerText = imgs.length;
+
+      if (imgs.length === 0) {
+        imgGrid.innerHTML = `
+          <div class="col-span-full py-10 text-center border border-dashed border-gray-900 rounded-xl bg-gray-950/30 text-gray-600 text-xs">
+            No images in this category yet. Click '+ Add Image' to include artwork or screenshots.
+          </div>
+        `;
+      } else {
+        imgs.forEach((src, idx) => {
+          const desc = artDescriptions[src] || '';
+          const card = document.createElement('div');
+          card.className = 'break-inside-avoid rounded-xl overflow-hidden bg-gray-950 border border-cyan-900/40 hover:border-cyan-400 transition duration-300 group cursor-pointer flex flex-col mb-4';
+          card.onclick = () => openArtModal(src);
+
+          card.innerHTML = `
+            <div class="overflow-hidden bg-black/50 relative">
+              <img src="${escapeHtml(src)}" alt="Artwork" class="w-full h-auto object-cover group-hover:scale-[1.02] transition duration-300" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23111827%22/><text x=%2250%%22 y=%2250%%22 fill=%22%239ca3af%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2212%22>${encodeURIComponent(src)}</text></svg>'">
+              <button onclick="event.stopPropagation(); removeProjectMedia('image', ${idx})" class="absolute top-2 right-2 bg-black/80 hover:bg-red-900 text-gray-400 hover:text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition" title="Remove image">
+                ✕
+              </button>
+            </div>
+            <div class="p-3 border-t border-cyan-950/60 bg-gray-950/90 flex flex-col justify-between">
+              <p class="text-xs ${desc ? 'text-gray-300' : 'text-gray-600 italic'} line-clamp-2">
+                ${escapeHtml(desc || 'Click to view / add description...')}
+              </p>
+            </div>
+          `;
+          imgGrid.appendChild(card);
+        });
+      }
+
+      // 5. Render Videos (YouTube or Local MP4)
+      const vidGrid = document.getElementById('project-videos-grid');
+      vidGrid.innerHTML = '';
+      const vids = activeProj.videos || [];
+      document.getElementById('proj-video-count').innerText = vids.length;
+
+      if (vids.length === 0) {
+        vidGrid.innerHTML = `
+          <div class="col-span-full py-10 text-center border border-dashed border-gray-900 rounded-xl bg-gray-950/30 text-gray-600 text-xs">
+            No videos added to this project yet. Click '+ Add Video' to embed YouTube gameplay or trailers.
+          </div>
+        `;
+      } else {
+        vids.forEach((v, idx) => {
+          const card = document.createElement('div');
+          card.className = "bg-gray-950 border border-cyan-900/40 rounded-xl overflow-hidden hover:border-cyan-500/50 transition flex flex-col justify-between";
+
+          let embedHtml = '';
+          const ytId = extractYouTubeId(v.url);
+          if (ytId) {
+            embedHtml = `
+              <div class="aspect-video w-full bg-black">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/${ytId}" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            `;
+          } else {
+            embedHtml = `
+              <div class="aspect-video w-full bg-black flex items-center justify-center p-2">
+                <video src="${escapeHtml(v.url)}" controls class="max-h-full max-w-full rounded" preload="metadata"></video>
+              </div>
+            `;
+          }
+
+          card.innerHTML = `
+            ${embedHtml}
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="orbitron text-base font-bold text-white">${escapeHtml(v.title)}</h4>
+                ${v.desc ? `<p class="text-xs text-gray-400 mt-1">${escapeHtml(v.desc)}</p>` : ''}
+              </div>
+              <div class="pt-3 mt-3 border-t border-gray-900 flex justify-between items-center">
+                <a href="${escapeHtml(v.url)}" target="_blank" rel="noopener" class="text-xs text-cyan-400 hover:underline">Direct Link ↗</a>
+                <button onclick="removeProjectMedia('video', ${idx})" class="text-xs text-red-400 hover:text-red-300">Remove</button>
+              </div>
+            </div>
+          `;
+          vidGrid.appendChild(card);
+        });
+      }
+
+      // 6. Render Audio
+      const audioList = document.getElementById('project-audio-list');
+      audioList.innerHTML = '';
+      const audios = activeProj.audios || [];
+      document.getElementById('proj-audio-count').innerText = audios.length;
+
+      if (audios.length === 0) {
+        audioList.innerHTML = `
+          <div class="py-10 text-center border border-dashed border-gray-900 rounded-xl bg-gray-950/30 text-gray-600 text-xs">
+            No audio files or theme tracks linked yet. Click '+ Add Audio' to link BGM, SFX, or soundtrack files.
+          </div>
+        `;
+      } else {
+        audios.forEach((a, idx) => {
+          const item = document.createElement('div');
+          item.className = "p-4 rounded-xl bg-gray-950 border border-purple-900/30 hover:border-purple-500/50 transition flex flex-col md:flex-row md:items-center justify-between gap-4";
+          item.innerHTML = `
+            <div class="flex-1">
+              <div class="flex items-center gap-2">
+                <span class="text-purple-400 text-sm font-bold">♫</span>
+                <h4 class="orbitron text-sm font-bold text-white">${escapeHtml(a.title)}</h4>
+              </div>
+              ${a.desc ? `<p class="text-xs text-gray-400 mt-1">${escapeHtml(a.desc)}</p>` : ''}
+            </div>
+            <div class="flex items-center gap-4 w-full md:w-auto">
+              <audio src="${escapeHtml(a.url)}" controls class="h-8 max-w-full"></audio>
+              <button onclick="removeProjectMedia('audio', ${idx})" class="text-xs text-red-400 hover:text-red-300 shrink-0">Remove</button>
+            </div>
+          `;
+          audioList.appendChild(item);
+        });
+      }
+    }
+
+    function openNewProjectModal() {
+      document.getElementById('project-form').reset();
+      document.getElementById('edit-proj-id').value = '';
+      document.getElementById('proj-modal-title').innerText = 'Create Project Tab';
+      toggleModal('project-modal', true);
+    }
+
+    function openEditProjectModal(projId) {
+      const p = projects.find(item => item.id === projId);
+      if (!p) return;
+      document.getElementById('edit-proj-id').value = p.id;
+      document.getElementById('proj-name-input').value = p.name;
+      document.getElementById('proj-tagline-input').value = p.tagline || '';
+      document.getElementById('proj-desc-input').value = p.desc || '';
+      document.getElementById('proj-modal-title').innerText = 'Edit Project Details';
+      toggleModal('project-modal', true);
+    }
+
+    function handleProjectSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('edit-proj-id').value;
+      const name = document.getElementById('proj-name-input').value.trim();
+      const tagline = document.getElementById('proj-tagline-input').value.trim();
+      const desc = document.getElementById('proj-desc-input').value.trim();
+
+      if (!name) return;
+
+      if (editId) {
+        const idx = projects.findIndex(p => p.id === editId);
+        if (idx !== -1) {
+          projects[idx].name = name;
+          projects[idx].tagline = tagline;
+          projects[idx].desc = desc;
+        }
+      } else {
+        const newProj = {
+          id: 'proj_' + Date.now(),
+          name,
+          tagline,
+          desc,
+          images: [],
+          videos: [],
+          audios: []
+        };
+        projects.push(newProj);
+        currentProjectId = newProj.id;
+      }
+
+      saveProjects();
+      toggleModal('project-modal', false);
+    }
+
+    function deleteProject(projId) {
+      if (projects.length <= 1) {
+        alert("You must keep at least one project tab.");
+        return;
+      }
+      if (confirm("Delete this project tab and all its associated media links?")) {
+        projects = projects.filter(p => p.id !== projId);
+        currentProjectId = projects[0].id;
+        saveProjects();
+      }
+    }
+
+    function openAddMediaModal(type) {
+      const activeProj = projects.find(p => p.id === currentProjectId);
+      if (!activeProj) return;
+
+      document.getElementById('media-form').reset();
+      document.getElementById('media-type').value = type;
+
+      const titles = {
+        image: 'Add Image to ' + activeProj.name,
+        video: 'Add Video to ' + activeProj.name,
+        audio: 'Add Audio Track to ' + activeProj.name
+      };
+      const urlLabels = {
+        image: 'Image Filename or URL * (e.g. image.png, https://...)',
+        video: 'YouTube Link, Video URL, or Local Video File * (e.g. Finallevel.mp4)',
+        audio: 'Audio File Path or Link * (e.g. theme.mp3, soundcloud/audio URL)'
+      };
+
+      document.getElementById('media-modal-title').innerText = titles[type] || 'Add Media';
+      document.getElementById('media-url-label').innerText = urlLabels[type] || 'File Link or Path *';
+
+      toggleModal('media-modal', true);
+    }
+
+    function handleMediaSubmit(e) {
+      e.preventDefault();
+      const activeProj = projects.find(p => p.id === currentProjectId);
+      if (!activeProj) return;
+
+      const type = document.getElementById('media-type').value;
+      const url = document.getElementById('media-url').value.trim();
+      const title = document.getElementById('media-title').value.trim();
+      const desc = document.getElementById('media-desc').value.trim();
+
+      if (!url) return;
+
+      if (type === 'image') {
+        if (!activeProj.images) activeProj.images = [];
+        activeProj.images.push(url);
+        if (desc) {
+          artDescriptions[url] = desc;
+          localStorage.setItem('sme_art_descriptions', JSON.stringify(artDescriptions));
+        }
+      } else if (type === 'video') {
+        if (!activeProj.videos) activeProj.videos = [];
+        activeProj.videos.push({ url, title, desc });
+      } else if (type === 'audio') {
+        if (!activeProj.audios) activeProj.audios = [];
+        activeProj.audios.push({ url, title, desc });
+      }
+
+      saveProjects();
+      toggleModal('media-modal', false);
+    }
+
+    function removeProjectMedia(type, index) {
+      const activeProj = projects.find(p => p.id === currentProjectId);
+      if (!activeProj) return;
+
+      if (confirm(`Remove this ${type}?`)) {
+        if (type === 'image') {
+          activeProj.images.splice(index, 1);
+        } else if (type === 'video') {
+          activeProj.videos.splice(index, 1);
+        } else if (type === 'audio') {
+          activeProj.audios.splice(index, 1);
+        }
+        saveProjects();
+      }
+    }
+
+    function openArtModal(src) {
+      activeArtSrc = src;
+      document.getElementById('art-modal-img').src = src;
+      const desc = artDescriptions[src] || '';
+      document.getElementById('art-modal-text').innerText = desc || 'No description added yet. Click edit below to add one.';
+      document.getElementById('art-desc-input').value = desc;
+      cancelArtDescEdit();
+      document.getElementById('art-modal').classList.remove('hidden');
+    }
+
+    function closeArtModal() {
+      document.getElementById('art-modal').classList.add('hidden');
+      document.getElementById('art-modal-img').src = '';
+      cancelArtDescEdit();
+      activeArtSrc = null;
+    }
+
+    function enableArtDescEdit() {
+      document.getElementById('art-desc-view').classList.add('hidden');
+      document.getElementById('art-desc-edit').classList.remove('hidden');
+      document.getElementById('art-desc-input').focus();
+    }
+
+    function cancelArtDescEdit() {
+      document.getElementById('art-desc-edit').classList.add('hidden');
+      document.getElementById('art-desc-view').classList.remove('hidden');
+    }
+
+    function saveArtDesc() {
+      if (!activeArtSrc) return;
+      const newText = document.getElementById('art-desc-input').value.trim();
+      artDescriptions[activeArtSrc] = newText;
+      localStorage.setItem('sme_art_descriptions', JSON.stringify(artDescriptions));
+
+      document.getElementById('art-modal-text').innerText = newText || 'No description added yet. Click edit below to add one.';
+      cancelArtDescEdit();
+      renderProjectPage();
+    }
+
+    // -------------------------------------------------------------
+    // PLAYING GAMES STATE & LOGIC
+    // -------------------------------------------------------------
+    const DEFAULT_PLAYLISTS = [
+      { id: 'dispatch_series', name: 'Dispatch', desc: 'Full episodic series & highlights', url: 'https://www.youtube.com/playlist?list=PLY5FOCn--J_ucQmfDEHDjvSHMdrQq7gJm' }
+    ];
+
+    let playlists = JSON.parse(localStorage.getItem('ph_playlists') || localStorage.getItem('sme_playlists')) || DEFAULT_PLAYLISTS;
+    let videos = JSON.parse(localStorage.getItem('ph_videos') || localStorage.getItem('sme_videos')) || [];
+    let sortOrders = JSON.parse(localStorage.getItem('ph_sort_orders') || localStorage.getItem('sme_sort_orders')) || {};
+
+    function saveState() {
+      localStorage.setItem('ph_playlists', JSON.stringify(playlists));
+      localStorage.setItem('ph_videos', JSON.stringify(videos));
+      localStorage.setItem('ph_sort_orders', JSON.stringify(sortOrders));
+      localStorage.setItem('sme_playlists', JSON.stringify(playlists));
+      localStorage.setItem('sme_videos', JSON.stringify(videos));
+      localStorage.setItem('sme_sort_orders', JSON.stringify(sortOrders));
+      renderAll();
+    }
+
+    function scrollRow(rowId, direction) {
+      const container = document.getElementById(rowId);
+      if (container) {
+        const scrollAmount = 320 * 2;
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    function toggleSortOrder(plId) {
+      sortOrders[plId] = sortOrders[plId] === 'desc' ? 'asc' : 'desc';
+      saveState();
+    }
+
+    function playRandomVideo() {
+      let pool = videos;
+      if (!pool || pool.length === 0) {
+        pool = [
+          { ytId: 'Qk-eE4Q2738', title: 'I Just Wanna Dispatch! (Episode 1)', seriesName: 'Dispatch' },
+          { ytId: '3V5_H45QfK0', title: 'You\'re Cutting Me Out of Dispatch!?', seriesName: 'Dispatch' },
+          { ytId: 'L0_5K0Hj8rA', title: 'Invisigal Will Remember That', seriesName: 'Dispatch' }
+        ];
+      }
+
+      const randomIdx = Math.floor(Math.random() * pool.length);
+      const chosen = pool[randomIdx];
+
+      let seriesName = chosen.seriesName || 'Series';
+      if (chosen.playlistId) {
+        const parentPl = playlists.find(p => p.id === chosen.playlistId);
+        if (parentPl) seriesName = parentPl.name;
+      }
+
+      document.getElementById('featured-title').innerText = chosen.title;
+      document.getElementById('featured-series-badge').innerText = seriesName;
+      document.getElementById('featured-desc').innerText = chosen.desc || `Now playing random pick from ${seriesName}`;
+      document.getElementById('featured-yt-link').href = `https://www.youtube.com/watch?v=${chosen.ytId}`;
+      document.getElementById('featured-iframe').src = `https://www.youtube.com/embed/${chosen.ytId}?autoplay=1`;
+    }
+
+    function renderAll() {
+      const container = document.getElementById('playlists-container');
+      const emptyNotice = document.getElementById('overall-empty');
+      container.innerHTML = '';
+
+      if (playlists.length === 0) {
+        emptyNotice.classList.remove('hidden');
+        return;
+      }
+      emptyNotice.classList.add('hidden');
+
+      playlists.forEach((pl) => {
+        let plVideos = videos.filter(v => v.playlistId === pl.id);
+        const currentSort = sortOrders[pl.id] || 'asc';
+
+        if (currentSort === 'desc') {
+          plVideos = [...plVideos].reverse();
+        }
+
+        const rowId = `row_${pl.id}`;
+        const section = document.createElement('section');
+        section.className = "rounded-2xl border border-cyan-900/50 bg-gray-950/40 p-6";
+
+        let headerHtml = `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-cyan-950/60 gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded bg-cyan-950 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+                  Playlist Series
+                </span>
+                <span class="text-xs text-gray-500 font-semibold">${plVideos.length} Videos</span>
+              </div>
+              <h3 class="orbitron text-2xl font-bold text-white mt-1">${escapeHtml(pl.name)}</h3>
+              ${pl.desc ? `<p class="text-xs text-gray-400 mt-1">${escapeHtml(pl.desc)}</p>` : ''}
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="toggleSortOrder('${pl.id}')" class="px-3 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-gray-700 text-xs font-semibold text-gray-300 flex items-center gap-1.5 transition" title="Toggle order">
+                <span class="text-cyan-400">${currentSort === 'asc' ? '▲' : '▼'}</span>
+                <span>${currentSort === 'asc' ? 'Oldest' : 'Newest'}</span>
+              </button>
+
+              ${plVideos.length > 0 ? `
+                <div class="flex items-center bg-gray-900 border border-gray-800 rounded-lg p-0.5">
+                  <button onclick="scrollRow('${rowId}', -1)" class="w-8 h-8 flex items-center justify-center text-cyan-400 hover:bg-gray-800 rounded text-sm transition" title="Scroll Left">◀</button>
+                  <button onclick="scrollRow('${rowId}', 1)" class="w-8 h-8 flex items-center justify-center text-cyan-400 hover:bg-gray-800 rounded text-sm transition" title="Scroll Right">▶</button>
+                </div>
+              ` : ''}
+
+              ${pl.url ? `<a href="${escapeHtml(pl.url)}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-gray-900 hover:bg-gray-800 border border-red-500/30 text-red-400 text-xs font-semibold">Open YouTube ↗</a>` : ''}
+              <button onclick="openVideoModal('${pl.id}')" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold">+ Add Video</button>
+
+              <div class="relative header-menu-container">
+                <button onclick="toggleHeaderMenu('${pl.id}', event)" class="w-8 h-8 rounded-lg bg-gray-900 hover:bg-gray-800 border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center text-base font-bold transition" title="Playlist Options">
+                  •••
+                </button>
+                <div id="menu_${pl.id}" class="header-dropdown-menu hidden absolute right-0 mt-2 w-36 bg-gray-900 border border-cyan-500/40 rounded-xl shadow-2xl py-1 z-30">
+                  <button onclick="openEditPlaylistModal('${pl.id}')" class="w-full text-left px-4 py-2 text-xs font-semibold text-gray-200 hover:bg-cyan-500/20 hover:text-cyan-300 flex items-center gap-2 transition">
+                    <span>✎</span> Edit Header
+                  </button>
+                  <button onclick="deletePlaylist('${pl.id}')" class="w-full text-left px-4 py-2 text-xs font-semibold text-red-400 hover:bg-red-950/50 flex items-center gap-2 transition">
+                    <span>🗑</span> Delete Playlist
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        let videosHtml = '';
+        if (plVideos.length === 0) {
+          videosHtml = `
+            <div class="py-8 text-center border border-dashed border-gray-900 rounded-xl bg-gray-950/20">
+              <p class="text-xs text-gray-500">No videos in this playlist yet.</p>
+              <button onclick="openVideoModal('${pl.id}')" class="mt-2 text-xs font-bold text-cyan-400 hover:underline">+ Add First Video to ${escapeHtml(pl.name)}</button>
+            </div>
+          `;
+        } else {
+          videosHtml = `<div id="${rowId}" class="custom-scroll flex gap-5 overflow-x-auto pb-4 pt-1">`;
+          plVideos.forEach((vid) => {
+            videosHtml += `
+              <div class="flex-none w-72 sm:w-80 bg-gray-900/60 border border-cyan-900/40 rounded-xl overflow-hidden hover:border-cyan-500/40 transition duration-300 flex flex-col justify-between">
+                <div>
+                  <div class="relative aspect-video bg-black cursor-pointer group" onclick="openVideoPlayer('${vid.ytId}', '${escapeHtml(vid.title)}')">
+                    <img src="https://img.youtube.com/vi/${vid.ytId}/hqdefault.jpg" alt="${escapeHtml(vid.title)}" class="w-full h-full object-cover group-hover:opacity-80 transition">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition bg-black/40">
+                      <div class="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center font-bold pl-1 shadow-lg shadow-cyan-500/50">▶</div>
+                    </div>
+                    ${vid.part ? `<span class="absolute top-2 left-2 bg-black/80 border border-cyan-500/40 text-cyan-300 text-[10px] font-bold px-2 py-0.5 rounded">${escapeHtml(vid.part)}</span>` : ''}
+                  </div>
+                  <div class="p-4">
+                    <h4 class="orbitron text-sm font-bold text-white line-clamp-2" title="${escapeHtml(vid.title)}">${escapeHtml(vid.title)}</h4>
+                    ${vid.desc ? `<p class="text-xs text-gray-400 mt-2 line-clamp-2">${escapeHtml(vid.desc)}</p>` : ''}
+                  </div>
+                </div>
+                <div class="p-4 pt-0 flex justify-between items-center border-t border-gray-800/60 mt-2">
+                  <button onclick="openVideoPlayer('${vid.ytId}', '${escapeHtml(vid.title)}')" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300">Play ▶</button>
+                  <div class="flex items-center gap-3">
+                    <button onclick="editVideo('${vid.id}')" class="text-xs text-gray-300 hover:text-cyan-300 transition">Edit ✎</button>
+                    <button onclick="deleteVideo('${vid.id}')" class="text-xs text-red-400 hover:text-red-300 transition">Delete</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          videosHtml += `</div>`;
+        }
+
+        section.innerHTML = headerHtml + videosHtml;
+        container.appendChild(section);
+      });
+    }
+
+    function openPlaylistModal() {
+      document.getElementById('playlist-form').reset();
+      document.getElementById('edit-pl-id').value = '';
+      document.getElementById('pl-modal-title').innerText = 'Create Playlist Header';
+      document.getElementById('pl-submit-btn').innerText = 'Save Playlist Header';
+      toggleModal('playlist-modal', true);
+    }
+
+    function openEditPlaylistModal(plId) {
+      const pl = playlists.find(p => p.id === plId);
+      if (!pl) return;
+      document.getElementById('edit-pl-id').value = pl.id;
+      document.getElementById('pl-name').value = pl.name;
+      document.getElementById('pl-desc').value = pl.desc || '';
+      document.getElementById('pl-url').value = pl.url || '';
+      document.getElementById('pl-modal-title').innerText = 'Edit Playlist Header';
+      document.getElementById('pl-submit-btn').innerText = 'Update Header';
+      document.querySelectorAll('.header-dropdown-menu').forEach(el => el.classList.add('hidden'));
+      toggleModal('playlist-modal', true);
+    }
+
+    function handlePlaylistSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('edit-pl-id').value;
+      const name = document.getElementById('pl-name').value.trim();
+      const desc = document.getElementById('pl-desc').value.trim();
+      const url = document.getElementById('pl-url').value.trim();
+
+      if (!name) return;
+
+      if (editId) {
+        const idx = playlists.findIndex(p => p.id === editId);
+        if (idx !== -1) {
+          playlists[idx].name = name;
+          playlists[idx].desc = desc;
+          playlists[idx].url = url;
+        }
+      } else {
+        const newPl = {
+          id: 'pl_' + Date.now(),
+          name,
+          desc,
+          url
+        };
+        playlists.push(newPl);
+        sortOrders[newPl.id] = 'asc';
+      }
+
+      saveState();
+      toggleModal('playlist-modal', false);
+    }
+
+    function deletePlaylist(plId) {
+      document.querySelectorAll('.header-dropdown-menu').forEach(el => el.classList.add('hidden'));
+      if (confirm("Delete this playlist header and all its videos?")) {
+        playlists = playlists.filter(p => p.id !== plId);
+        videos = videos.filter(v => v.playlistId !== plId);
+        delete sortOrders[plId];
+        saveState();
+      }
+    }
+
+    function populatePlaylistDropdown(preselectedPlaylistId = null) {
+      const select = document.getElementById('video-playlist-select');
+      select.innerHTML = '';
+      playlists.forEach(pl => {
+        const opt = document.createElement('option');
+        opt.value = pl.id;
+        opt.innerText = pl.name;
+        if (preselectedPlaylistId && pl.id === preselectedPlaylistId) {
+          opt.selected = true;
+        }
+        select.appendChild(opt);
+      });
+    }
+
+    function openVideoModal(preselectedPlaylistId = null) {
+      if (playlists.length === 0) {
+        alert("Please create a Playlist Header first!");
+        openPlaylistModal();
+        return;
+      }
+      document.getElementById('video-form').reset();
+      document.getElementById('edit-video-id').value = '';
+      document.getElementById('video-modal-title').innerText = 'Add Video';
+      document.getElementById('video-submit-btn').innerText = 'Save Video';
+
+      populatePlaylistDropdown(preselectedPlaylistId);
+      if (preselectedPlaylistId) {
+        document.getElementById('video-playlist-select').value = preselectedPlaylistId;
+      }
+      toggleModal('video-modal', true);
+    }
+
+    function editVideo(vidId) {
+      const vid = videos.find(v => v.id === vidId);
+      if (!vid) return;
+
+      populatePlaylistDropdown(vid.playlistId);
+      document.getElementById('edit-video-id').value = vid.id;
+      document.getElementById('video-playlist-select').value = vid.playlistId;
+      document.getElementById('video-url').value = `https://www.youtube.com/watch?v=${vid.ytId}`;
+      document.getElementById('video-title').value = vid.title;
+      document.getElementById('video-part').value = vid.part || '';
+      document.getElementById('video-desc').value = vid.desc || '';
+
+      document.getElementById('video-modal-title').innerText = 'Edit Video & Title';
+      document.getElementById('video-submit-btn').innerText = 'Update Video';
+      toggleModal('video-modal', true);
+    }
+
+    function handleVideoSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('edit-video-id').value;
+      const playlistId = document.getElementById('video-playlist-select').value;
+      const rawUrl = document.getElementById('video-url').value;
+      const ytId = extractYouTubeId(rawUrl);
+
+      if (!ytId) {
+        alert("Please enter a valid YouTube video link or 11-character ID.");
+        return;
+      }
+
+      const title = document.getElementById('video-title').value.trim();
+      const part = document.getElementById('video-part').value.trim();
+      const desc = document.getElementById('video-desc').value.trim();
+
+      if (editId) {
+        const vidIndex = videos.findIndex(v => v.id === editId);
+        if (vidIndex !== -1) {
+          videos[vidIndex] = { ...videos[vidIndex], playlistId, ytId, title, part, desc };
+        }
+      } else {
+        const newVid = {
+          id: 'vid_' + Date.now(),
+          playlistId,
+          ytId,
+          title,
+          part,
+          desc
+        };
+        videos.push(newVid);
+      }
+
+      saveState();
+      toggleModal('video-modal', false);
+    }
+
+    function deleteVideo(vidId) {
+      if (confirm("Delete this video?")) {
+        videos = videos.filter(v => v.id !== vidId);
+        saveState();
+      }
+    }
+
+    function extractYouTubeId(url) {
+      if (!url) return '';
+      const clean = url.trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(clean)) return clean;
+      const match = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      return match ? match[1] : '';
+    }
+
+    function toggleModal(id, show) {
+      document.getElementById(id).classList.toggle('hidden', !show);
+    }
+
+    function openVideoPlayer(ytId, title) {
+      document.getElementById('player-title').innerText = title;
+      document.getElementById('player-iframe').src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+      toggleModal('player-modal', true);
+    }
+
+    function closeVideoPlayer() {
+      document.getElementById('player-iframe').src = '';
+      toggleModal('player-modal', false);
+    }
+
+    function escapeHtml(text) {
+      return (text || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // -------------------------------------------------------------
+    // IMMEDIATE BREAK-OFF 3D FLOATING WORDS
+    // -------------------------------------------------------------
+    const floatContainer = document.getElementById('float-container');
+    const elSuper = document.getElementById('word-super');
+    const elMega = document.getElementById('word-mega');
+    const elEddie = document.getElementById('word-eddie');
+
+    const neonPalettes = [
+      '#06b6d4', '#ef4444', '#3b82f6', '#10b981', '#a855f7', '#f59e0b', '#ec4899'
+    ];
+
+    function createWordDrifter(el, defaultColorIdx) {
+      return {
+        el,
+        x: 0,
+        y: 0,
+        z: 0,
+        vx: 0,
+        vy: 0,
+        vz: 0,
+        rotX: 0,
+        rotY: 0,
+        rotZ: 0,
+        phaseX: Math.random() * Math.PI * 2,
+        phaseY: Math.random() * Math.PI * 2,
+        phaseZ: Math.random() * Math.PI * 2,
+        freqX: 0.0016 + Math.random() * 0.0012,
+        freqY: 0.0014 + Math.random() * 0.0012,
+        freqZ: 0.0012 + Math.random() * 0.001,
+        w: 0,
+        h: 0,
+        colorIdx: defaultColorIdx
+      };
+    }
+
+    let words = [
+      createWordDrifter(elSuper, 0),
+      createWordDrifter(elMega, 1),
+      createWordDrifter(elEddie, 2)
+    ];
+
+    let wordsInitialized = false;
+
+    function updateWordSizes() {
+      words.forEach(w => {
+        w.w = w.el.offsetWidth || 180;
+        w.h = w.el.offsetHeight || 80;
+      });
+    }
+
+    function bumpWordColor(w) {
+      w.colorIdx = (w.colorIdx + 1) % neonPalettes.length;
+      w.el.style.color = neonPalettes[w.colorIdx];
+      w.el.style.textShadow = `0 0 25px ${neonPalettes[w.colorIdx]}99`;
+    }
+
+    function initUnifiedCenter() {
+      const boundW = floatContainer.clientWidth || window.innerWidth;
+      const boundH = floatContainer.clientHeight || (window.innerHeight - 260);
+      updateWordSizes();
+
+      const totalW = words[0].w + words[1].w + words[2].w;
+      const startX = Math.max(10, (boundW - totalW) / 2);
+      const centerY = Math.max(10, (boundH - words[0].h) / 2);
+
+      words[0].x = startX;
+      words[0].y = centerY;
+      words[0].z = 0;
+      words[0].vx = -0.16;
+      words[0].vy = -0.12;
+      words[0].vz = 0.06;
+
+      words[1].x = startX + words[0].w;
+      words[1].y = centerY;
+      words[1].z = 0;
+      words[1].vx = 0.07;
+      words[1].vy = 0.15;
+      words[1].vz = -0.07;
+
+      words[2].x = startX + words[0].w + words[1].w;
+      words[2].y = centerY;
+      words[2].z = 0;
+      words[2].vx = 0.17;
+      words[2].vy = -0.14;
+      words[2].vz = 0.08;
+
+      wordsInitialized = true;
+    }
+
+    function updateFloatingWords() {
+      if (document.getElementById('page-home').classList.contains('hidden')) {
+        requestAnimationFrame(updateFloatingWords);
+        return;
+      }
+
+      if (!wordsInitialized) {
+        initUnifiedCenter();
+      }
+
+      const boundW = floatContainer.clientWidth || window.innerWidth;
+      const boundH = floatContainer.clientHeight || (window.innerHeight - 260);
+      updateWordSizes();
+
+      const minZ = -130;
+      const maxZ = 80;
+
+      words.forEach(w => {
+        w.phaseX += w.freqX;
+        w.phaseY += w.freqY;
+        w.phaseZ += w.freqZ;
+
+        const curveX = Math.sin(w.phaseX) * 0.07;
+        const curveY = Math.cos(w.phaseY) * 0.07;
+        const curveZ = Math.sin(w.phaseZ) * 0.04;
+
+        w.x += w.vx + curveX;
+        w.y += w.vy + curveY;
+        w.z += w.vz + curveZ;
+
+        w.rotX = Math.sin(w.phaseY) * 7;
+        w.rotY = Math.cos(w.phaseX) * 9;
+        w.rotZ = Math.sin(w.phaseZ) * 3;
+
+        const maxX = Math.max(0, boundW - w.w - 10);
+        const maxY = Math.max(0, boundH - w.h - 10);
+
+        let hit = false;
+
+        if (w.x <= 10) {
+          w.x = 10;
+          w.vx = Math.abs(w.vx) + (Math.random() * 0.04 - 0.02);
+          hit = true;
+        } else if (w.x >= maxX) {
+          w.x = maxX;
+          w.vx = -Math.abs(w.vx) + (Math.random() * 0.04 - 0.02);
+          hit = true;
+        }
+
+        if (w.y <= 10) {
+          w.y = 10;
+          w.vy = Math.abs(w.vy) + (Math.random() * 0.04 - 0.02);
+          hit = true;
+        } else if (w.y >= maxY) {
+          w.y = maxY;
+          w.vy = -Math.abs(w.vy) + (Math.random() * 0.04 - 0.02);
+          hit = true;
+        }
+
+        if (w.z <= minZ) {
+          w.z = minZ;
+          w.vz = Math.abs(w.vz);
+        } else if (w.z >= maxZ) {
+          w.z = maxZ;
+          w.vz = -Math.abs(w.vz);
+        }
+
+        w.vx = Math.sign(w.vx) * Math.min(Math.max(Math.abs(w.vx), 0.12), 0.28);
+        w.vy = Math.sign(w.vy) * Math.min(Math.max(Math.abs(w.vy), 0.12), 0.28);
+        w.vz = Math.sign(w.vz) * Math.min(Math.max(Math.abs(w.vz), 0.03), 0.09);
+
+        if (hit) {
+          bumpWordColor(w);
+          w.freqX = 0.0014 + Math.random() * 0.0014;
+          w.freqY = 0.0012 + Math.random() * 0.0014;
+          w.freqZ = 0.0010 + Math.random() * 0.0012;
+        }
+
+        w.el.style.transform = `translate3d(${w.x}px, ${w.y}px, ${w.z}px) rotateX(${w.rotX}deg) rotateY(${w.rotY}deg) rotateZ(${w.rotZ}deg)`;
+      });
+
+      requestAnimationFrame(updateFloatingWords);
+    }
+
+    // Canvas Background
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: Math.random() * 2 + 1
+      });
+    }
+
+    function animateBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#06b6d4';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+
+    requestAnimationFrame(updateFloatingWords);
+    renderProjectPage();
+    renderAll();
+  </script>
+</body>
+</html>
